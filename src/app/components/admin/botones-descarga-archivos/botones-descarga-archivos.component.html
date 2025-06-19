@@ -1,0 +1,20 @@
+<!--
+ Para usar este componente hay que especificar qué tabla se quiere consultar, para
+ ello hay que llamarlo de la siguiente manera en el html:
+ <app-botones-descarga-archivos [tableName] = "'nombreDeLaTablaAConsultar'" />
+-->
+
+
+
+<div class="flex flex-col items-center space-y-2">
+
+  <h3 class="text-center text-lg font-semibold">Tabla {{tableName}}</h3>
+
+  <div class="flex justify-between w-full max-w-xs">
+
+    <app-boton-descargar-archivo-csv [tableName]="tableName" />
+    <app-boton-descargar-archivo-pdf [tableName]="tableName" />
+
+  </div>
+
+</div>

@@ -1,0 +1,78 @@
+<header>
+  <nav
+    class="bg-white border-gray-200 px-2 lg:px-6 py-3.5 dark:bg-black dark:border-[#22D33C] border-b-1"
+  >
+    <div
+      class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl"
+    >
+      <a [routerLink]="['']" class="flex items-center">
+        <img
+          src="nav/logo.png"
+          alt="Logo TechComputers"
+          class="mr-3 h-9 sm:h-12 flex items-center transition-all duration-300 dark:filter dark:invert"
+        />
+
+        <span
+          class="self-center text-base sm:text-xl font-semibold whitespace-nowrap dark:text-white flex items-center"
+          >TechComputers</span
+        >
+      </a>
+      <div class="flex items-center lg:order-2">
+        <button
+          (click)="toggleDarkMode()"
+          class="sm:w-7 sm:h-7 w-8 h-8 cursor-pointer mx-0 sm:mx-4 flex items-center justify-center hover:scale-110 duration-200 dark:text-white"
+          aria-label="Activar modo oscuro"
+        >
+          <svg
+            class="w-6 h-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M9.36 3.293a1 1 0 0 1 .187 1.157A7.45 7.45 0 0 0 19.55 14.453a1 1 0 0 1 1.343 1.343 9.45 9.45 0 1 1-12.69-12.69 1 1 0 0 1 1.158.187zM6.823 6.67A7.45 7.45 0 0 0 17.33 17.179 9.45 9.45 0 0 1 6.821 6.67z"
+              fill="currentColor"
+            />
+          </svg>
+        </button>
+
+        <!-- Si el usuario está autenticado -->
+        <ng-container *ngIf="user; else loginButton">
+          <a [routerLink]="'/user'">
+            <span
+              class="material-icons text-green-500 !text-3xl sm:!text-4xl px-2 cursor-pointer"
+              title="Usuario conectado"
+            >
+              account_circle
+            </span>
+          </a>
+
+          <!-- Botón panel de administración -->
+          <a
+            *ngIf="isAdmin"
+            [routerLink]="'/admin'"
+            class="outline-1 outline-[#22D33C] rounded-full hover:bg-[#22d33ca1] duration-300 mx-2 px-4 py-2 text-gray-800 dark:text-white font-medium text-sm sm:text-lg"
+          >
+            Panel de Administración
+          </a>
+
+          <button
+            (click)="authServicePublic.signOut()"
+            class="outline-1 outline-[#22D33C] rounded-full hover:bg-[#22d33ca1] duration-300 mx-2 sm:mx-6 px-5 py-2 lg:py-2.5 text-gray-800 dark:text-white font-medium text-sm sm:text-lg"
+          >
+            Cerrar sesión
+          </button>
+        </ng-container>
+
+        <!-- Si el usuario no está autenticado -->
+        <ng-template #loginButton>
+          <a
+            [routerLink]="'/auth'"
+            class="outline-1 outline-[#22D33C] rounded-full hover:bg-[#22d33ca1] duration-300 mx-2 sm:mx-6 text-gray-800 dark:text-white font-medium text-sm sm:text-lg px-5 py-2 lg:py-2.5"
+            >Login</a
+          >
+        </ng-template>
+      </div>
+    </div>
+  </nav>
+</header>

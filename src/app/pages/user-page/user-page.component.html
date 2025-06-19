@@ -1,0 +1,48 @@
+<div class="min-h-screen bg-white dark:bg-gray-900 text-gray-900 dark:text-white p-8">
+
+  <ng-container *ngIf="usuarioActivo?.roles?.tipo as tipoRol">
+
+    <!-- Título dinámico -->
+    <h2 class="text-3xl font-semibold mb-6 text-center">
+      {{ tipoRol.toLowerCase() === 'admin' ? 'Panel de Administración' : 'Área de Usuario' }}
+    </h2>
+
+    <!-- Tarjeta de usuario -->
+    <div class="max-w-md mx-auto bg-gray-100 dark:bg-gray-800 rounded-xl shadow-md p-6 mt-6 text-center">
+      <!-- Icono -->
+      <div class="text-center mt-2 mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-16 h-16 mx-auto text-black dark:text-white" fill="none"
+          viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M12 12c2.28 0 4-1.72 4-4s-1.72-4-4-4-4 1.72-4 4 1.72 4 4 4zM6 17c0-2.39 3.19-3.5 6-3.5s6 1.11 6 3.5" />
+        </svg>
+      </div>
+
+      <!-- Info usuario -->
+      <h3 class="text-2xl font-bold mb-4">
+        Bienvenido, {{ usuarioActivo.nombre }} {{ usuarioActivo.apellido }}
+      </h3>
+      <p class="mb-2"><strong>Correo:</strong> {{ correoUsuario }}</p>
+      <p class="flex items-center justify-center gap-2">
+        <strong>Rol:</strong> {{ tipoRol }}
+        <span *ngIf="tipoRol.toLowerCase() === 'admin'"
+          class="material-icons text-blue-500 dark:text-blue-400 align-middle text-2xl"
+          title="Administrador verificado">
+          verified_user
+        </span>
+      </p>
+    </div>
+
+    <!-- Navegación según el rol -->
+    <ng-container *ngIf="tipoRol.toLowerCase() === 'admin'; else navUser">
+      <app-admin-nav></app-admin-nav>
+    </ng-container>
+
+  </ng-container>
+
+  <!-- Fallback para user -->
+  <ng-template #navUser>
+    <app-user-nav></app-user-nav>
+  </ng-template>
+
+</div>

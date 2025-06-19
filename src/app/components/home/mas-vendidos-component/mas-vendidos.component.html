@@ -1,0 +1,26 @@
+<section class="flex flex-col">
+  <div *ngIf="masVendidos.length > 0; else noProductos">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div
+        *ngFor="let producto of masVendidos"
+        class="bg-white p-4 rounded-lg shadow-md dark:bg-gray-800"
+      >
+        <img
+          src="{{ producto.imagen }}"
+          alt="{{ producto.nombre }}"
+          class="w-full h-84 sm:h-108 xl:h-116 2xl:h-146 object-contain rounded-md"
+        />
+        <h3 class="text-lg font-semibold mt-8">{{ producto.nombre }}</h3>
+        <p class="text-sm text-gray-600 dark:text-gray-300">
+          {{ producto.descripcion }}
+        </p>
+        <p class="font-bold text-green-600">Precio: {{ producto.precio }} €</p>
+      </div>
+    </div>
+  </div>
+  <ng-template #noProductos>
+    <p class="text-center text-gray-500">
+      No hay productos disponibles actualmente.
+    </p>
+  </ng-template>
+</section>

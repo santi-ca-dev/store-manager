@@ -1,0 +1,187 @@
+<section class="bg-gray-50 dark:bg-gray-900">
+  <div
+    class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+  >
+    <div
+      class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700"
+    >
+      <div class="p-6 space-y-4 md:space-y-6 sm:p-8 relative">
+        <h1
+          class="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center"
+        >
+          {{ isSignUp ? "Regístrate" : "Iniciar Sesión" }}
+        </h1>
+
+        <form
+          class="space-y-4 md:space-y-6"
+          [formGroup]="registerForm"
+          (ngSubmit)="onSubmit()"
+        >
+          <div *ngIf="isSignUp">
+            <label
+              for="name"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Nombre *
+            </label>
+            <input
+              type="text"
+              formControlName="name"
+              id="name"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Introduzca su nombre"
+              required
+            />
+            <p
+              class="text-red-500 text-sm mt-1"
+              *ngIf="
+                registerForm.controls['name'].hasError('required') &&
+                registerForm.controls['name'].touched
+              "
+            >
+              El nombre es obligatorio.
+            </p>
+            <p
+              class="text-red-500 text-sm mt-1"
+              *ngIf="
+                registerForm.controls['name'].hasError('pattern') &&
+                registerForm.controls['name'].touched
+              "
+            >
+              El nombre no puede incluir números ni caracteres especiales.
+            </p>
+          </div>
+
+          <div *ngIf="isSignUp">
+            <label
+              for="lastName"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Primer Apellido*
+            </label>
+            <input
+              type="text"
+              formControlName="lastName"
+              id="lastName"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="Introduzca su primer apellido"
+              required
+            />
+            <p
+              class="text-red-500 text-sm mt-1"
+              *ngIf="
+                registerForm.controls['lastName'].hasError('required') &&
+                registerForm.controls['lastName'].touched
+              "
+            >
+              El apellido es obligatorio.
+            </p>
+            <p
+              class="text-red-500 text-sm mt-1"
+              *ngIf="
+                registerForm.controls['lastName'].hasError('pattern') &&
+                registerForm.controls['lastName'].touched
+              "
+            >
+              El apellido no puede incluir números, caracteres especiales o espacios.
+            </p>
+          </div>
+
+          <div>
+            <label
+              for="email"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Email *
+            </label>
+            <input
+              type="email"
+              formControlName="email"
+              id="email"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="email@ejemplo.com"
+              required
+            />
+            <p
+              class="text-red-500 text-sm mt-1"
+              *ngIf="
+                registerForm.controls['email'].invalid &&
+                registerForm.controls['email'].touched
+              "
+            >
+              <span *ngIf="registerForm.controls['email'].errors?.['required']"
+                >El email es obligatorio.</span
+              >
+              <span *ngIf="registerForm.controls['email'].errors?.['email']"
+                >El formato del email no es válido.</span
+              >
+            </p>
+          </div>
+
+          <div>
+            <label
+              for="password"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+            >
+              Contraseña *
+            </label>
+            <input
+              type="password"
+              formControlName="password"
+              id="password"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              placeholder="••••••••"
+              required
+            />
+            <p
+              class="text-red-500 text-sm mt-1"
+              *ngIf="
+                registerForm.controls['password'].hasError('required') &&
+                registerForm.controls['password'].touched
+              "
+            >
+              La contraseña es obligatoria.
+            </p>
+            <p
+              class="text-red-500 text-sm mt-1"
+              *ngIf="
+                registerForm.controls['password'].hasError('minlength') &&
+                registerForm.controls['password'].touched
+              "
+            >
+              La contraseña es demasiado corta. Debe tener al menos 6
+              caracteres.
+            </p>
+            <p class="text-red-500 text-sm mt-1" *ngIf="loginError">
+              {{ loginError }}
+            </p>
+          </div>
+
+          <button
+            type="submit"
+            [disabled]="registerForm.invalid || isLoading"
+            class="submit-btn w-1/2 text-white bg-[#7B2CC4] hover:bg-[#6a1b9a] focus:ring-0 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-[#7B2CC4] dark:hover:bg-[#6a1b9a] dark:focus:ring-0"
+          >
+            {{
+              isLoading
+                ? "Cargando..."
+                : isSignUp
+                ? "Crear cuenta"
+                : "Iniciar sesión"
+            }}
+          </button>
+
+          <p class="text-sm font-light text-gray-500 dark:text-gray-400">
+            {{ isSignUp ? "¿Ya tienes una cuenta?" : "¿No tienes cuenta aún?" }}
+            <a
+              (click)="cambiarModo()"
+              class="font-medium text-primary-600 hover:underline dark:text-primary-500"
+            >
+              {{ isSignUp ? "Inicia sesión aquí" : "Regístrate aquí" }}
+            </a>
+          </p>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>

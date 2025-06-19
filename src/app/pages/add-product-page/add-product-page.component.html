@@ -1,0 +1,59 @@
+<div
+  class="min-h-screen w-full bg-white dark:bg-gray-900 text-gray-900 dark:text-white flex flex-col items-center justify-start">
+
+  <!-- Navegación -->
+  <app-admin-nav></app-admin-nav>
+
+  <!-- Formulario -->
+  <form (ngSubmit)="addProduct()"
+    class="mt-10 space-y-4 w-full max-w-2xl px-4 sm:px-8 py-8 bg-white rounded-lg shadow-md dark:bg-gray-800 border-2 border-gray-300 dark:border-[#22D33C]">
+
+    <h2 class="text-2xl font-semibold mb-6 text-center">
+      Añadir nuevo producto
+    </h2>
+
+    <!-- Inputs -->
+    <input [(ngModel)]="producto.nombre" name="nombre" placeholder="Nombre"
+      class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+
+    <input [(ngModel)]="producto.descripcion" name="descripcion" placeholder="Descripción"
+      class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+
+    <select [(ngModel)]="producto.categoria" name="categoria"
+      class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500">
+      <option value="" disabled selected>Selecciona una categoria</option>
+      <option value="Periféricos">Periféricos</option>
+      <option value="Componentes">Componentes</option>
+      <option value="Accesorios">Accesorios</option>
+      <option value="Ordenadores">Ordenadores</option>
+    </select>
+
+    <input [(ngModel)]="producto.cantidad" name="cantidad" type="number" placeholder="Cantidad"
+      class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+
+    <input [(ngModel)]="producto.precio" name="precio" type="number" placeholder="Precio (€)"
+      class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+
+    <input [(ngModel)]="producto.imagen" name="imagen" placeholder="URL de la imagen"
+      class="w-full p-3 rounded border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-green-500" />
+
+    <button type="submit"
+      class="cursor-pointer w-full py-3 bg-green-600 text-white rounded hover:bg-green-700 transition duration-300">
+      AÑADIR
+    </button>
+
+    <p *ngIf="mensaje" class="text-center text-green-500 dark:text-green-400 font-medium">{{ mensaje }}</p>
+    <p *ngIf="error" class="text-center text-red-500 dark:text-red-400 font-medium">{{ error }}</p>
+
+    <!-- Volver a página de stock -->
+    <div class="flex justify-center mt-10 px-4">
+      <a routerLink="/admin"
+        class="cursor-pointer inline-block px-6 py-3 rounded-lg text-gray-800 bg-gray-100 hover:bg-gray-200
+               dark:text-white dark:bg-gray-900 dark:hover:bg-gray-700
+               transition duration-300 shadow-md">
+        ← Volver a stock
+      </a>
+    </div>
+
+  </form>
+</div>

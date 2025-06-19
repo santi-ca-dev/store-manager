@@ -1,0 +1,39 @@
+<div class="mt-4 h-auto bg-white dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+
+  <!-- Tarjetas de navegación -->
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-8 bg-white dark:bg-gray-900">
+
+    <!-- Tarjeta Mis Compras -->
+    <div class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-800 text-center">
+      <span class="material-icons text-indigo-500 block mx-auto" style="font-size: 4rem;">
+        shopping_bag
+      </span>
+      <h3 class="text-xl font-semibold mt-4">Mis Compras</h3>
+      <p class="mt-2 text-gray-600 dark:text-gray-300">Consulta tu historial de compras realizadas.</p>
+      <a routerLink="/user" routerLinkActive="active" class="mt-4 text-indigo-600 hover:text-indigo-800">Ver compras</a>
+    </div>
+
+    <!-- Tarjeta Métodos de Pago -->
+    <div class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-800 text-center">
+      <span class="material-icons text-pink-500 block mx-auto" style="font-size: 4rem;">
+        credit_card
+      </span>
+      <h3 class="text-xl font-semibold mt-4">Métodos de Pago</h3>
+      <p class="mt-2 text-gray-600 dark:text-gray-300">Gestiona tus tarjetas o cuentas vinculadas.</p>
+      <a routerLink="/user" routerLinkActive="active" class="mt-4 text-pink-600 hover:text-pink-800">Gestionar pagos</a>
+    </div>
+
+    <!-- Tarjeta Dirección -->
+    <div class="bg-white p-6 rounded-lg shadow-md dark:bg-gray-800 text-center">
+      <span class="material-icons text-teal-500 block mx-auto" style="font-size: 4rem;">
+        location_on
+      </span>
+      <h3 class="text-xl font-semibold mt-4">Dirección</h3>
+      <p class="mt-2 text-gray-600 dark:text-gray-300">Edita tu dirección de envío o contacto.</p>
+      <a routerLink="/user" routerLinkActive="active" class="mt-4 text-teal-600 hover:text-teal-800">Actualizar dirección</a>
+    </div>
+
+
+  </div>
+
+</div>

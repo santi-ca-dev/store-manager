@@ -1,0 +1,72 @@
+<!-- Contenedor general -->
+<div class="min-h-screen flex flex-col bg-white dark:bg-gray-900">
+
+  <!-- TOGGLE para móviles -->
+  <div class="sm:hidden p-4">
+    <button (click)="mostrarSidebar = !mostrarSidebar"
+      class="ml-4 sm:ml-0 shadow-md text-black bg-white px-4 py-2 rounded dark:bg-gray-800 dark:text-white">
+      ☰ Categorías
+    </button>
+
+    <div *ngIf="mostrarSidebar" class="mt-4">
+      <app-side-filter
+        [categorias]="categorias"
+        (categoriaSeleccionada)="filtrarCategoriasSeleccionadas($event)">
+      </app-side-filter>
+    </div>
+  </div>
+
+  <!-- Contenido principal en flex: sidebar + contenido -->
+  <div class="flex w-full">
+
+    <!-- Sidebar fijo en escritorio -->
+    <div class="hidden sm:block w-64 border-r dark:border-gray-700">
+      <app-side-filter
+        [categorias]="categorias"
+        (categoriaSeleccionada)="filtrarCategoriasSeleccionadas($event)">
+      </app-side-filter>
+    </div>
+
+    <!-- Contenido -->
+    <div class="flex-1 p-4 bg-white dark:bg-gray-900">
+
+      <!-- Navegación -->
+      <app-admin-nav></app-admin-nav>
+
+      <!-- Buscador -->
+      <app-search-bar (searchEvent)="updateSearchTerm($event)" />
+
+      <!-- Botones -->
+      <div class="flex justify-center flex-wrap gap-2 my-4">
+        <app-boton-descargar-archivo-csv [tableName]="'productos'" />
+        <app-boton-descargar-archivo-pdf [tableName]="'productos'" />
+        <button
+          class="cursor-pointer focus:outline-none text-white bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+          (click)="SeguirPath('add-product')">
+          Crear Producto
+        </button>
+      </div>
+
+      <!-- Estados -->
+      @if (loading) {
+        <div class="text-gray-900 dark:text-white">Cargando productos...</div>
+      } @else if (error) {
+        <div class="text-red-500 dark:text-red-400">{{ error }}</div>
+        <button
+          (click)="loadProducts()"
+          class="bg-red-700 text-white px-5 py-2.5 rounded dark:bg-red-600 hover:bg-red-800 dark:hover:bg-red-700">
+          Reintentar
+        </button>
+      } @else {
+        <app-product-table
+          [products]="filteredProducts"
+          [updatingProducts]="updatingProducts"
+          [showActions]="true"
+          (updateQuantity)="updateQuantity($event.productId, $event.change)"
+          (deleteProduct)="deleteProduct($event)"
+        />
+      }
+
+    </div>
+  </div>
+</div>
