@@ -1,4 +1,4 @@
-# 📦 Stock-Manager – Gestor de Inventario
+# 📦 Store-Manager – Gestor de Inventario
 
 Aplicación web moderna para la gestión de stock en tiempo real, desarrollada con Angular y conectada a Supabase como backend. Permite registrar, editar y eliminar productos con persistencia en base de datos y una interfaz responsive diseñada con Tailwind CSS. La aplicación cuenta con un sistema de roles que distingue entre administradores y usuarios estándar: los administradores tienen acceso completo al panel de gestión de productos, estadísticas y control total del sistema, mientras que los usuarios solo pueden acceder a su dashboard personal, sin permisos para ver ni modificar el inventario.
 
