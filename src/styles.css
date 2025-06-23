@@ -28,3 +28,13 @@ body.dark .custom-scroll {
   scrollbar-color: #555 #1e1e1e;
 }
 
+.text-outline-neon {
+  text-shadow:
+    0 0 3px #84cc16,
+    0 0 5px #84cc16,
+    0 0 10px #84cc16,
+    0 0 15px #a3e635,
+    0 0 20px #a3e635;
+}
+
+
