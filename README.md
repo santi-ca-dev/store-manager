@@ -25,6 +25,6 @@ Aplicación web moderna para la gestión de stock en tiempo real, desarrollada c
 
 Puedes acceder a la aplicación usando los siguientes usuarios de prueba:
 | Rol             | Correo                  | Contraseña     |
-|:-----------------|:--------------------------:|:--------------:|
+|:-----------------:|:--------------------------:|:--------------:|
 | Usuario cliente | `usuario@usuario.com`    | `123456`       |
 | Administrador   | `super@usuario.com`      | `123456`       |
